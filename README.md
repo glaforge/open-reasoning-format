@@ -1,0 +1,160 @@
+# Open Reasoning Format (ORF)
+
+**Version:** 0.1.0  
+**Status:** Draft  
+**Specification:** [SPECIFICATION.md](SPECIFICATION.md)
+
+The **Open Reasoning Format (ORF)** defines a lightweight, file-based memory architecture for AI agents. It synthesizes principles from:
+- **The Reasoning Bank paper (Google):** Procedural knowledge, abstracted heuristics, and execution traps learned through experience.
+- **Open Knowledge Format (OKF):** Human-readable, token-optimized Markdown and YAML.
+- **Agent Skills Specification:** Progressive disclosure and zero-runtime indirection layers.
+
+---
+
+## 🚀 Key Features
+
+- **Zero Runtime Infrastructure:** Operates via local workspace file I/O (`./experiences`), requiring no vector databases or external server processes.
+- **Progressive Disclosure:** Agents query high-level category metadata (~200 tokens) before fetching targeted experience playbooks (~800 tokens), optimizing context window usage.
+- **Standardized Schema:** 5-section Markdown architecture with YAML frontmatter for explicit indexing and trigger conditions.
+- **Agent Skill Ready:** Interoperable with `agentskills.io` via the included `manage-experience` skill and reference CLI tool.
+
+---
+
+## 📁 Repository Structure
+
+```text
+.
+├── README.md                              # Overview and usage instructions
+├── SPECIFICATION.md                       # Full ORF v0.1.0 Specification
+├── requirements.txt                        # Python dependencies (PyYAML)
+├── experiences/
+│   ├── INDEX.md                           # Root category index & indirection layer
+│   └── python-scripting/                  # Domain directory
+│       └── EXP-20260720-0001.md           # Experience record (EXP-<YYYYMMDD>-<sequence>.md)
+├── manage-experience/
+│   ├── SKILL.md                           # Agent Skill Specification
+│   └── scripts/
+│       └── experiences.py                 # Reference Python helper CLI script
+└── tests/
+    └── test_experiences.py                # Automated CLI test suite
+```
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Python 3.10+
+- PyYAML (`pip install -r requirements.txt`)
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 💡 Using the Helper CLI (`experiences.py`)
+
+The reference implementation script provides deterministic file I/O operations for viewing and creating experience records.
+
+### 1. List Available Categories
+
+```bash
+python3 manage-experience/scripts/experiences.py list-categories
+```
+
+### 2. Inspect Experience Metadata in a Domain Category
+
+```bash
+python3 manage-experience/scripts/experiences.py get-frontmatter --category python-scripting
+```
+
+### 3. Read a Specific Experience Record
+
+```bash
+python3 manage-experience/scripts/experiences.py read-experience --id EXP-20260720-0001
+```
+
+### 4. Record a New Experience
+
+```bash
+python3 manage-experience/scripts/experiences.py create-experience \
+  --domain "cloud-run" \
+  --title "Set explicit memory limit on container deployment" \
+  --description "Trigger when deploying containerized apps to Cloud Run experiencing OOM kills." \
+  --keywords "cloud-run,container,memory,oom" \
+  --complexity "medium" \
+  --objective "Deploy service to Cloud Run without container OOM restarts." \
+  --trap "Default 512MiB allocation caused container crashes under load." \
+  --insight "Always set memory limit to at least 1GiB for Node/Python runtimes during initial provisioning." \
+  --validated-path "Pass --memory 1Gi to gcloud run deploy command." \
+  --checklist-item "Verify memory utilization in Cloud Monitoring."
+```
+
+## 🧠 The `manage-experience` Skill
+
+The Open Reasoning Format includes a pre-built **Agent Skill** located in [`manage-experience/SKILL.md`](manage-experience/SKILL.md), adhering strictly to the [agentskills.io](https://agentskills.io) specification.
+
+### Skill Overview
+
+- **Name:** `manage-experience`
+- **Specification:** `ORF-0.1`
+- **Location:** `manage-experience/SKILL.md`
+- **Helper Script:** `manage-experience/scripts/experiences.py`
+- **Compatibility:** Requires local filesystem read/write permissions and Python 3.10+ (with `PyYAML`).
+
+### Skill Frontmatter Header
+
+```yaml
+---
+name: manage-experience
+description: Dynamically routes, retrieves, and records procedural playbooks from the local `./experiences` folder. Use at the start of complex tasks to consult past experience, and at the end of a successful execution to record new operational learnings.
+license: Apache-2.0
+compatibility: Requires local file-system read/write permissions and Python 3.10+
+metadata:
+  version: "0.1.0"
+  spec_format: "ORF-0.1"
+---
+```
+
+### How Agents Utilize the Skill
+
+Host agent frameworks that support the Agent Skills specification automatically discover `manage-experience/SKILL.md` upon initialization. The skill provides step-by-step instructions guiding the agent through a two-phase workflow:
+
+1. **Phase 1: Progressive Discovery & Retrieval**
+   - **Step 1 (Category Search):** The agent runs `list-categories` to check if the user prompt matches known domain categories.
+   - **Step 2 (Metadata Inspection):** If a category matches, the agent runs `get-frontmatter --category <domain-id>` to inspect triggers and descriptions of relevant experiences (~500 tokens).
+   - **Step 3 (Experience Loading):** When a specific trigger condition matches the active task or error trap, the agent runs `read-experience --id EXP-...` to load the full playbook (~800 tokens) into its context.
+
+2. **Phase 2: Post-Task Learning & Experience Recording**
+   - After successfully solving a non-trivial problem, handling an unexpected edge case, or finding a domain-specific workaround, the agent runs `create-experience` to append a new `EXP-<YYYYMMDD>-<sequence>.md` file and automatically update `experiences/INDEX.md`.
+
+---
+
+## 🤖 Integration with AI Agent Frameworks
+
+ORF experiences can be loaded dynamically into any agent framework that supports local tool calling or skill execution.
+
+### Execution Lifecycle
+
+1. **Category Retrieval:** Call `list-categories` to check if past experiences match the user task domain.
+2. **Metadata Inspection:** Call `get-frontmatter --category <domain-id>` to find matching playbooks or traps.
+3. **Experience Retrieval:** Call `read-experience --id EXP-...` to inject the *Abstracted Insight* and *Validated Path* into the prompt context.
+4. **Learning & Post-Task Recording:** After resolving a complex issue or trap, call `create-experience` to store the operational learning for future runs.
+
+---
+
+## 🧪 Running Tests
+
+To verify script parsing, experience generation, and index updates:
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+---
+
+## 📜 License
+
+Apache-2.0
