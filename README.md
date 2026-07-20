@@ -24,6 +24,7 @@ The **Open Reasoning Format (ORF)** defines a lightweight, file-based memory arc
 
 ```text
 .
+├── AGENTS.md                              # AI agent operational guidelines
 ├── README.md                              # Overview and usage instructions
 ├── SPECIFICATION.md                       # Full ORF v0.1.0 Specification
 ├── requirements.txt                        # Python dependencies (PyYAML)
@@ -158,3 +159,10 @@ python3 -m unittest discover -s tests
 ## 📜 License
 
 Apache-2.0
+
+---
+
+## 📌 Disclaimer
+
+This is not an official Google project.
+
