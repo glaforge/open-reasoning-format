@@ -1,0 +1,35 @@
+{
+  "evaluation_type": "live_subagent_benchmark",
+  "agent_model": "Antigravity Subagent (orf_eval_agent)",
+  "timestamp": "2026-07-20T17:34:00Z",
+  "summary": {
+    "frontmatter-parser": {
+      "cold_run": {
+        "scenario_id": "frontmatter-parser",
+        "condition": "Cold",
+        "conversation_id": "561914cc-76be-4985-963b-79dab6e0d1e6",
+        "success": true,
+        "trap_avoided": false,
+        "step_count": 25,
+        "error_count": 3,
+        "recorded_new_experience": true,
+        "valid_new_experience_spec": true,
+        "details": "Cold run required regex delimiter debugging and recorded EXP-20260720-0001.md"
+      },
+      "warm_run": {
+        "scenario_id": "frontmatter-parser",
+        "condition": "Warm",
+        "conversation_id": "f84d9028-b541-482f-a08e-c892f1de3fe1",
+        "success": true,
+        "trap_avoided": true,
+        "step_count": 12,
+        "error_count": 0,
+        "recorded_new_experience": false,
+        "valid_new_experience_spec": false,
+        "details": "Warm run retrieved EXP-20260720-0001.md and solved task on 1st attempt."
+      },
+      "step_reduction_pct": 52.0,
+      "error_reduction_pct": 100.0
+    }
+  }
+}

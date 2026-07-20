@@ -61,3 +61,7 @@ Icon?
 *.swp
 *.swo
 *~
+
+# Evaluation Sandbox Workspaces
+evals/workspaces/
+

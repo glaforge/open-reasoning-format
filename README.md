@@ -31,14 +31,22 @@ The **Open Reasoning Format (ORF)** defines a lightweight, file-based memory arc
 ├── experiences/
 │   ├── INDEX.md                           # Root category index & indirection layer
 │   └── python-scripting/                  # Domain directory
-│       └── EXP-20260720-0001.md           # Experience record (EXP-<YYYYMMDD>-<sequence>.md)
+│       ├── EXP-20260720-0001.md           # Frontmatter parsing playbook
+│       ├── EXP-20260720-0002.md           # Atomic file storage playbook
+│       └── EXP-20260720-0003.md           # Subprocess pipe deadlock playbook
 ├── manage-experience/
-│   ├── SKILL.md                           # Agent Skill Specification
+│   ├── SKILL.md                           # Agent Skill Specification (agentskills.io)
 │   └── scripts/
 │       └── experiences.py                 # Reference Python helper CLI script
+├── evals/                                 # Trajectory Evaluation & A/B Testing Framework
+│   ├── runner.py                          # Evaluation CLI benchmark runner
+│   ├── harness/                           # Sandbox, evaluator, and spec validator
+│   ├── scenarios/                         # Isolated scenario benchmarks (problem.md & test_verify.py)
+│   └── reports/                           # Exported evaluation matrix reports (Markdown / JSON)
 └── tests/
-    └── test_experiences.py                # Automated CLI test suite
+    └── test_experiences.py                # Automated unit test suite
 ```
+
 
 ---
 
@@ -146,7 +154,49 @@ ORF experiences can be loaded dynamically into any agent framework that supports
 
 ---
 
+## 📊 Trajectory Evaluation & A/B Testing Framework
+
+ORF includes a built-in evaluation harness (`./evals`) to empirically measure whether experience playbooks improve AI agent trajectories, reduce step counts, eliminate trial-and-error debugging cycles, and validate dynamic experience recording.
+
+### 3-Stage Evaluation Pipeline
+
+```text
+[ Stage 1: Cold Run ]       -->       [ Stage 2: Spec Validation ]       -->       [ Stage 3: Warm Run ]
+Without Prior Experience                Validate New EXP-*.md File                 With Newly Minted EXP
+- Measures baseline steps               - Checks YAML frontmatter                  - Evaluates Phase 1 retrieval
+- Tests Phase 2 recording               - Audits 5 required sections               - Measures step reduction &
+  (`create-experience`)                 - Confirms INDEX.md update                   first-attempt trap avoidance
+```
+
+1. **Stage 1 (Cold Run - Baseline)**: An agent attempts a scenario without prior experience playbooks. If it encounters and resolves a trap, we measure whether it automatically triggers **Phase 2** of the skill (`create-experience`) to record a new playbook.
+2. **Stage 2 (Spec Validation)**: An automated validator (`spec_validator.py`) audits any dynamically generated `EXP-*.md` file against the 7 required YAML frontmatter fields and 5 mandatory Markdown headers.
+3. **Stage 3 (Warm Run - Accelerated Execution)**: A fresh agent context attempts the scenario with the newly recorded playbook available. We evaluate **Phase 1** retrieval (`manage-experience`), first-attempt trap avoidance, and percentage step count reduction.
+
+### Benchmark Scenarios Included
+
+- **`frontmatter-parser`**: Parses and updates Markdown index files without corrupting YAML frontmatter headers block (`EXP-20260720-0001.md`).
+- **`atomic-writer`**: Updates JSON state persistent files atomically using temporary files and `os.replace` (`EXP-20260720-0002.md`).
+- **`subprocess-pipe`**: Executes CLI subcommands with non-blocking stdout/stderr pipe streaming (`EXP-20260720-0003.md`).
+
+### Running Evaluation Benchmarks
+
+```bash
+# 1. Run evaluation scenarios in dry-run verification mode
+python3 evals/runner.py --dry-run
+
+# 2. Run live A/B testing benchmarks using local `agy` (Antigravity CLI) binary
+python3 evals/runner.py --agy
+
+# 3. Export Markdown and JSON comparative reports
+python3 evals/runner.py --agy \
+  --export-markdown evals/reports/agy_report.md \
+  --export-json evals/reports/agy_report.json
+```
+
+---
+
 ## 🧪 Running Tests
+
 
 To verify script parsing, experience generation, and index updates:
 
