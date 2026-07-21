@@ -9,9 +9,9 @@
 **Specification:** [SPECIFICATION.md](SPECIFICATION.md)
 
 The **Open Reasoning Format (ORF)** defines a lightweight, file-based memory architecture for AI agents. It synthesizes principles from:
-- **The Reasoning Bank paper (Google):** Procedural knowledge, abstracted heuristics, and execution traps learned through experience.
-- **Open Knowledge Format (OKF):** Human-readable, token-optimized Markdown and YAML.
-- **Agent Skills Specification:** Progressive disclosure and zero-runtime indirection layers.
+- **[The Reasoning Bank paper](https://arxiv.org/abs/2509.25140) (Google):** Procedural knowledge, abstracted heuristics, and execution traps learned through experience.
+- **[Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md):** Human-readable, token-optimized Markdown and YAML.
+- **[Agent Skills Specification](https://agentskills.io/):** Progressive disclosure and zero-runtime indirection layers.
 
 ---
 
@@ -20,7 +20,7 @@ The **Open Reasoning Format (ORF)** defines a lightweight, file-based memory arc
 - **Zero Runtime Infrastructure:** Operates via local workspace file I/O (`./experiences`), requiring no vector databases or external server processes.
 - **Progressive Disclosure:** Agents query high-level category metadata (~200 tokens) before fetching targeted experience playbooks (~800 tokens), optimizing context window usage.
 - **Standardized Schema:** 5-section Markdown architecture with YAML frontmatter for explicit indexing and trigger conditions.
-- **Agent Skill Ready:** Interoperable with `agentskills.io` via the included `manage-experience` skill and reference CLI tool.
+- **Agent Skill Ready:** Interoperable with [agentskills.io](https://agentskills.io/) via the included `manage-experience` skill and reference CLI tool.
 
 ---
 
