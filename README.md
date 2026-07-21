@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo/logo.png" alt="Open Reasoning Format Logo" width="550"/>
+</p>
+
 # Open Reasoning Format (ORF)
 
 **Version:** 0.1.0  
