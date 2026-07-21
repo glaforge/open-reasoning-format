@@ -24,6 +24,9 @@ For detailed specification guidelines, refer to [SPECIFICATION.md](SPECIFICATION
 │   ├── SKILL.md                           # Agent Skill Specification (agentskills.io)
 │   └── scripts/
 │       └── experiences.py                 # Reference Python CLI helper script
+├── evals/                                 # Trajectory Evaluation & A/B Testing Framework
+│   ├── README.md                          # Evaluation harness & scenario authoring guide
+│   └── runner.py                          # Benchmark CLI runner
 └── tests/
     └── test_experiences.py                # Automated test suite
 ```

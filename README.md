@@ -39,6 +39,7 @@ The **Open Reasoning Format (ORF)** defines a lightweight, file-based memory arc
 │   └── scripts/
 │       └── experiences.py                 # Reference Python helper CLI script
 ├── evals/                                 # Trajectory Evaluation & A/B Testing Framework
+│   ├── README.md                          # Evaluation harness & scenario authoring guide
 │   ├── runner.py                          # Evaluation CLI benchmark runner
 │   ├── harness/                           # Sandbox, evaluator, and spec validator
 │   ├── scenarios/                         # Isolated scenario benchmarks (problem.md & test_verify.py)
