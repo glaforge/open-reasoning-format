@@ -136,6 +136,35 @@ metadata:
 
 Host agent frameworks that support the Agent Skills specification automatically discover `manage-experience/SKILL.md` upon initialization. The skill provides step-by-step instructions guiding the agent through a two-phase workflow:
 
+```mermaid
+flowchart TD
+    A[User Prompt] --> B[Agent Context Initialization]
+    B --> C["Calls: `experiences.py list-categories`"]
+    C --> D["Returns: High-level category list (~200 tokens)"]
+    D --> E{Matches Category?}
+    
+    E -- YES --> F["Calls: `experiences.py get-frontmatter --category <domain-id>`"]
+    F --> G["Returns: Frontmatter metadata (~500 tokens)"]
+    G --> H{Matches Specific Experience?}
+    
+    E -- NO --> H
+    
+    H -- YES --> I["Calls: `experiences.py read-experience --id EXP-...`"]
+    I --> J["Returns: Full playbook body (~800 tokens)"]
+    J --> K["Task Execution Phase<br/>(Agent applies lessons learned or resolves problem)"]
+    
+    H -- NO --> K
+    
+    K --> L[Post-Task Learning Phase]
+    L --> M{Discovered new heuristic/trap?}
+    
+    M -- YES --> N["Calls: `experiences.py create-experience ...`"]
+    N --> O["Result: Local `./experiences` updated"]
+    O --> P((End))
+    
+    M -- NO --> P
+```
+
 1. **Phase 1: Progressive Discovery & Retrieval**
    - **Step 1 (Category Search):** The agent runs `list-categories` to check if the user prompt matches known domain categories.
    - **Step 2 (Metadata Inspection):** If a category matches, the agent runs `get-frontmatter --category <domain-id>` to inspect triggers and descriptions of relevant experiences (~500 tokens).
