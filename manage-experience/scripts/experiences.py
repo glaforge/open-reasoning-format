@@ -100,9 +100,10 @@ def cmd_create_experience(args):
     category_dir = EXPERIENCES_DIR / args.domain
     category_dir.mkdir(parents=True, exist_ok=True)
     
-    existing_files = list(category_dir.glob(f"EXP-{date_str}-*.md"))
+    existing_files = list(category_dir.glob("EXP-*.md"))
     seq = len(existing_files) + 1
     exp_id = f"EXP-{date_str}-{seq:04d}"
+
     
     file_path = category_dir / f"{exp_id}.md"
     

@@ -55,7 +55,9 @@ def prepare_live_workspace(scenario_id: str, condition: str) -> Path:
             "frontmatter-parser": "EXP-20260720-0001",
             "atomic-writer": "EXP-20260720-0002",
             "subprocess-pipe": "EXP-20260720-0003",
+            "langchain4j-gemini": "EXP-20260721-0001",
         }
+
         exp_id = exp_id_map.get(scenario_id)
         if exp_id:
             for exp_file in (project_root / "experiences").rglob(f"{exp_id}.md"):

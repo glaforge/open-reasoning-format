@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "langchain4j-gemini": {
+      "cold_run": {
+        "scenario_id": "langchain4j-gemini",
+        "condition": "Cold",
+        "success": true,
+        "trap_avoided": true,
+        "step_count": 10,
+        "error_count": 0,
+        "recorded_new_experience": false,
+        "valid_new_experience_spec": false,
+        "details": "AGY Cold Run (ret=0)"
+      },
+      "phase2_creation": null,
+      "warm_run": {
+        "scenario_id": "langchain4j-gemini",
+        "condition": "Warm",
+        "success": true,
+        "trap_avoided": true,
+        "step_count": 5,
+        "error_count": 0,
+        "recorded_new_experience": false,
+        "valid_new_experience_spec": false,
+        "details": "AGY Warm Run (ret=0)"
+      },
+      "step_reduction_pct": 50.0,
+      "error_reduction_pct": 0.0
+    }
+  },
+  "raw_results": [
+    {
+      "scenario_id": "langchain4j-gemini",
+      "condition": "Cold",
+      "success": true,
+      "trap_avoided": true,
+      "step_count": 10,
+      "error_count": 0,
+      "recorded_new_experience": false,
+      "valid_new_experience_spec": false,
+      "details": "AGY Cold Run (ret=0)"
+    },
+    {
+      "scenario_id": "langchain4j-gemini",
+      "condition": "Warm",
+      "success": true,
+      "trap_avoided": true,
+      "step_count": 5,
+      "error_count": 0,
+      "recorded_new_experience": false,
+      "valid_new_experience_spec": false,
+      "details": "AGY Warm Run (ret=0)"
+    }
+  ]
+}

@@ -28,7 +28,9 @@ SCENARIO_EXP_MAP = {
     "frontmatter-parser": "EXP-20260720-0001",
     "atomic-writer": "EXP-20260720-0002",
     "subprocess-pipe": "EXP-20260720-0003",
+    "langchain4j-gemini": "EXP-20260721-0001",
 }
+
 
 
 def run_agy_scenario(scenario_id: str, evaluator: TrajectoryEvaluator):
@@ -184,6 +186,33 @@ def run_command_with_timeout(cmd, timeout=5.0):
     out, err = proc.communicate(timeout=timeout)
     return proc.returncode, out, err
 """, encoding="utf-8")
+        elif scenario_id == "langchain4j-gemini":
+            (warm_box.workspace / "pom.xml").write_text("""<project>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-google-genai</artifactId>
+            <version>1.0.0-beta1</version>
+        </dependency>
+
+    </dependencies>
+</project>""", encoding="utf-8")
+            src_dir = warm_box.workspace / "src" / "test" / "java" / "com" / "example"
+            src_dir.mkdir(parents=True, exist_ok=True)
+            (src_dir / "GeminiTest.java").write_text("""package com.example;
+import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+public class GeminiTest {
+    public void testCapital() {
+        var model = GoogleAiGeminiChatModel.builder().apiKey("key").modelName("gemini-2.5-flash").build();
+        String res = model.generate("What's the capital of France?");
+        assert res.contains("Paris");
+    }
+}""", encoding="utf-8")
+
 
         res = verifier.verify_scenario(warm_box.workspace)
         evaluator.record_result(TrajectoryResult(
@@ -207,7 +236,8 @@ def main():
 
     args = parser.parse_args()
 
-    scenarios = ["frontmatter-parser", "atomic-writer", "subprocess-pipe"]
+    scenarios = ["frontmatter-parser", "atomic-writer", "subprocess-pipe", "langchain4j-gemini"]
+
     if args.scenario != "all":
         if args.scenario not in scenarios:
             sys.stderr.write(f"Unknown scenario '{args.scenario}'. Choose from {scenarios}\n")
