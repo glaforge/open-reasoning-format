@@ -1,0 +1,85 @@
+{
+    "reactivex__rxjava-7597": {
+        "patch_is_None": false,
+        "patch_exists": true,
+        "patch_successfully_applied": true,
+        "resolved": true,
+        "tests_status": {
+            "FAIL_TO_PASS": {
+                "success": [
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerOnSubscribeOuterCancelRace"
+                ],
+                "failure": []
+            },
+            "PASS_TO_PASS": {
+                "success": [
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > outerInnerErrorRaceIgnoreDispose",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayError",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mapperThrows",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > scalarMap",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerErrorsReentrant",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerNoSubscriptionYet",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > cancellationShouldTriggerInnerCancellationRace",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > scalarMapDelayError",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFused",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > undeliverableUponCancel",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedCompletable",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedPollCrashDelayError",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapInnerCancelled",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteCancelRace",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleDelayErrorJustSource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > emptyInner",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithComplete",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleFunctionDoesntReturnSingle",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedSingle",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleMapperReturnsNull",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithSubsequenceError",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayErrorBufferSize",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchIssue737",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > outerInnerErrorRace",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedPollCrash",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerCompletesReentrant",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedMaybe",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > delayErrors",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > nextSourceErrorRace",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapJustSource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > badMainSource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayErrorWithError",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWhenInnerCompleteBeforeOuter",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > doubleOnSubscribe",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > issue2654",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteWhileInnerActive",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteInnerErrorRace",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWhenOuterCompleteBeforeInner",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > badInnerSource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleJustSource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > nextCancelRace",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > unsubscribe",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapDelayErrorJustSource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithError",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerIgnoresCancelAndErrors",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapFusedIterable",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerDisposedOnMainError",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > fusedBoundary",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithSubsequenceComplete",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapHiddenIterable",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > dispose",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapErrorEmptySource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > justInner",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchDuringOnNext",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapDelayErrorEmptySource",
+                    "io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedRejecting"
+                ],
+                "failure": []
+            },
+            "FAIL_TO_FAIL": {
+                "success": [],
+                "failure": []
+            },
+            "PASS_TO_FAIL": {
+                "success": [],
+                "failure": []
+            }
+        }
+    }
+}

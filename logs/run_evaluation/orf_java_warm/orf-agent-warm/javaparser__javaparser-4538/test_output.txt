@@ -1,0 +1,335 @@
++ cd /testbed
++ git config --global --add safe.directory /testbed
++ cd /testbed
++ git checkout e0eb16b8870fc05c03ab794e502dd76f97422e26 javaparser-core-testing/src/test/java/com/github/javaparser/ast/NodeTest.java
+Updated 0 paths from 8faacea1d
++ git apply --verbose --reject -
+Checking patch javaparser-core-testing/src/test/java/com/github/javaparser/ast/NodeTest.java...
+Applied patch javaparser-core-testing/src/test/java/com/github/javaparser/ast/NodeTest.java cleanly.
++ ./mvnw clean install -B -pl javaparser-core-testing -DskipTests -am
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] javaparser-parent                                                  [pom]
+[INFO] javaparser-core                                                    [jar]
+[INFO] javaparser-core-testing                                            [jar]
+[INFO] 
+[INFO] --------------< com.github.javaparser:javaparser-parent >---------------
+[INFO] Building javaparser-parent 3.26.2-SNAPSHOT                         [1/3]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.0:clean (default-clean) @ javaparser-parent ---
+[INFO] 
+[INFO] --- install:3.1.3:install (default-install) @ javaparser-parent ---
+[INFO] Installing /testbed/pom.xml to /root/.m2/repository/com/github/javaparser/javaparser-parent/3.26.2-SNAPSHOT/javaparser-parent-3.26.2-SNAPSHOT.pom
+[INFO] 
+[INFO] ---------------< com.github.javaparser:javaparser-core >----------------
+[INFO] Building javaparser-core 3.26.2-SNAPSHOT                           [2/3]
+[INFO]   from javaparser-core/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.0:clean (default-clean) @ javaparser-core ---
+[INFO] Deleting /testbed/javaparser-core/target
+[INFO] 
+[INFO] --- ph-javacc:4.1.5:javacc (javacc) @ javaparser-core ---
+ParserGeneratorCC Version 1.1.4 (ParserGeneratorCC)
+(type "pgcc" with no arguments for help)
+Reading from file /testbed/javaparser-core/src/main/javacc/java.jj ...
+Warning: Line 47, Column 5: Bad option name "STATIC".  Option setting will be ignored.
+Warning: Choice conflict in [...] construct at line 3019, column 5.
+         Expansion nested within construct and expansion following construct
+         have common prefixes, one of which is: "="
+         Consider using a lookahead of 2 or more for nested expansion.
+Warning: Line 155, Column 3: Non-ASCII characters used in regular expression.
+Please make sure you use the correct Reader when you create the parser, one that can handle your character set.
+File "Provider.java" does not exist.  Will create one.
+File "StringProvider.java" does not exist.  Will create one.
+File "StreamProvider.java" does not exist.  Will create one.
+File "TokenMgrException.java" does not exist.  Will create one.
+File "ParseException.java" does not exist.  Will create one.
+File "Token.java" does not exist.  Will create one.
+File "CharStream.java" does not exist.  Will create one.
+File "AbstractCharStream.java" does not exist.  Will create one.
+File "SimpleCharStream.java" does not exist.  Will create one.
+Parser generated with 0 errors and 3 warnings.
+[INFO] Processed 1 grammar
+[INFO] 
+[INFO] --- build-helper:3.6.0:add-source (add-source) @ javaparser-core ---
+[INFO] Source directory: /testbed/javaparser-core/src/main/javacc-support added.
+[INFO] 
+[INFO] --- templating:3.0.0:filter-sources (filter-src) @ javaparser-core ---
+[INFO] Copying files with filtering to temporary directory.
+[INFO] Copying 1 resource from src/main/java-templates to target/templates-tmp134472280
+[INFO] Copied 1 files to output directory: /testbed/javaparser-core/target/generated-sources/java-templates
+[INFO] Source directory: /testbed/javaparser-core/target/generated-sources/java-templates added.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ javaparser-core ---
+[INFO] skip non existing resourceDirectory /testbed/javaparser-core/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ javaparser-core ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 557 source files with javac [debug target 1.8] to target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 8
+[INFO] /testbed/javaparser-core/src/main/java/com/github/javaparser/printer/configuration/PrettyPrinterConfiguration.java: Some input files use or override a deprecated API.
+[INFO] /testbed/javaparser-core/src/main/java/com/github/javaparser/printer/configuration/PrettyPrinterConfiguration.java: Recompile with -Xlint:deprecation for details.
+[INFO] /testbed/javaparser-core/src/main/java/com/github/javaparser/ast/Node.java: Some input files use unchecked or unsafe operations.
+[INFO] /testbed/javaparser-core/src/main/java/com/github/javaparser/ast/Node.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- bnd:6.4.0:bnd-process (default) @ javaparser-core ---
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ javaparser-core ---
+[INFO] skip non existing resourceDirectory /testbed/javaparser-core/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ javaparser-core ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.4.0:test (default-test) @ javaparser-core ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ javaparser-core ---
+[INFO] Building jar: /testbed/javaparser-core/target/javaparser-core-3.26.2-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.3:install (default-install) @ javaparser-core ---
+[INFO] Installing /testbed/javaparser-core/pom.xml to /root/.m2/repository/com/github/javaparser/javaparser-core/3.26.2-SNAPSHOT/javaparser-core-3.26.2-SNAPSHOT.pom
+[INFO] Installing /testbed/javaparser-core/target/javaparser-core-3.26.2-SNAPSHOT.jar to /root/.m2/repository/com/github/javaparser/javaparser-core/3.26.2-SNAPSHOT/javaparser-core-3.26.2-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< com.github.javaparser:javaparser-core-testing >------------
+[INFO] Building javaparser-core-testing 3.26.2-SNAPSHOT                   [3/3]
+[INFO]   from javaparser-core-testing/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.0:clean (default-clean) @ javaparser-core-testing ---
+[INFO] Deleting /testbed/javaparser-core-testing/target
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (jacoco-initialize) @ javaparser-core-testing ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/testbed/javaparser-core-testing/target/jacoco.exec -javaagent:'${settings.localRepository}/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar'
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ javaparser-core-testing ---
+[INFO] skip non existing resourceDirectory /testbed/javaparser-core-testing/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ javaparser-core-testing ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ javaparser-core-testing ---
+[INFO] Copying 106 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ javaparser-core-testing ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 224 source files with javac [debug target 1.8] to target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 8
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/JavaParserTest.java: Some input files use or override a deprecated API.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/JavaParserTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/LineSeparatorProcessorTest.java: Some input files use unchecked or unsafe operations.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/LineSeparatorProcessorTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-javaparser-core-classes) @ javaparser-core-testing ---
+[INFO] Copying 679 resources from ../javaparser-core/target/classes to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-javaparser-core-generated-sources) @ javaparser-core-testing ---
+[INFO] Copying 13 resources from ../javaparser-core/target/generated-sources to target/generated-sources
+[INFO] 
+[INFO] --- surefire:3.4.0:test (default-test) @ javaparser-core-testing ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jacoco:0.8.12:report (jacoco-report) @ javaparser-core-testing ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ javaparser-core-testing ---
+[INFO] Building jar: /testbed/javaparser-core-testing/target/javaparser-core-testing-3.26.2-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.3:install (default-install) @ javaparser-core-testing ---
+[INFO] Installing /testbed/javaparser-core-testing/pom.xml to /root/.m2/repository/com/github/javaparser/javaparser-core-testing/3.26.2-SNAPSHOT/javaparser-core-testing-3.26.2-SNAPSHOT.pom
+[INFO] Installing /testbed/javaparser-core-testing/target/javaparser-core-testing-3.26.2-SNAPSHOT.jar to /root/.m2/repository/com/github/javaparser/javaparser-core-testing/3.26.2-SNAPSHOT/javaparser-core-testing-3.26.2-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for javaparser-parent 3.26.2-SNAPSHOT:
+[INFO] 
+[INFO] javaparser-parent .................................. SUCCESS [  1.614 s]
+[INFO] javaparser-core .................................... SUCCESS [01:59 min]
+[INFO] javaparser-core-testing ............................ SUCCESS [ 45.102 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:46 min
+[INFO] Finished at: 2026-07-22T12:19:27Z
+[INFO] ------------------------------------------------------------------------
++ : '>>>>> Start Test Output'
++ ./mvnw test -B -pl javaparser-core-testing -Dtest=NodeTest
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------< com.github.javaparser:javaparser-core-testing >------------
+[INFO] Building javaparser-core-testing 3.26.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (jacoco-initialize) @ javaparser-core-testing ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/testbed/javaparser-core-testing/target/jacoco.exec -javaagent:'${settings.localRepository}/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar'
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ javaparser-core-testing ---
+[INFO] skip non existing resourceDirectory /testbed/javaparser-core-testing/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ javaparser-core-testing ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ javaparser-core-testing ---
+[INFO] Copying 106 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ javaparser-core-testing ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 224 source files with javac [debug target 1.8] to target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 8
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/JavaParserTest.java: Some input files use or override a deprecated API.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/JavaParserTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/LineSeparatorProcessorTest.java: Some input files use unchecked or unsafe operations.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/LineSeparatorProcessorTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-javaparser-core-classes) @ javaparser-core-testing ---
+[INFO] Copying 679 resources from ../javaparser-core/target/classes to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-javaparser-core-generated-sources) @ javaparser-core-testing ---
+[INFO] Copying 13 resources from ../javaparser-core/target/generated-sources to target/generated-sources
+[INFO] 
+[INFO] --- surefire:3.4.0:test (default-test) @ javaparser-core-testing ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.4.0/surefire-junit-platform-3.4.0.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.4.0/surefire-junit-platform-3.4.0.pom (5.7 kB at 3.8 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.4.0/surefire-providers-3.4.0.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.4.0/surefire-providers-3.4.0.pom (2.6 kB at 48 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.4.0/common-java5-3.4.0.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.4.0/common-java5-3.4.0.pom (2.8 kB at 36 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.pom (3.2 kB at 60 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.pom (1.7 kB at 29 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.pom (2.8 kB at 54 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.pom (3.0 kB at 56 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.4.0/surefire-junit-platform-3.4.0.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.4.0/surefire-junit-platform-3.4.0.jar (27 kB at 333 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.4.0/common-java5-3.4.0.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar (7.7 kB at 75 kB/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.4.0/common-java5-3.4.0.jar (18 kB at 58 kB/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar (169 kB at 539 kB/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar (103 kB at 272 kB/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar (189 kB at 458 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.0/junit-platform-launcher-1.11.0.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.0/junit-platform-launcher-1.11.0.pom (3.0 kB at 59 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.0/junit-platform-launcher-1.11.0.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.0/junit-platform-launcher-1.11.0.jar (189 kB at 2.4 MB/s)
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.github.javaparser.ast.NodeTest
+[INFO] Running com.github.javaparser.ast.NodeTest$PostOrderIteratorTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 s -- in com.github.javaparser.ast.NodeTest$PostOrderIteratorTest
+[INFO] com.github.javaparser.ast.NodeTest.findNodeByRange -- Time elapsed: 2.521 s
+[INFO] com.github.javaparser.ast.NodeTest.hasJavaDocCommentNegativeCaseBlockComment -- Time elapsed: 0.006 s
+[INFO] com.github.javaparser.ast.NodeTest.removingTheSecondOfAListOfIdenticalStatementsDoesNotMessUpTheParents -- Time elapsed: 0.244 s
+[INFO] com.github.javaparser.ast.NodeTest.removeAllOnRequiredProperty -- Time elapsed: 0.076 s
+[INFO] com.github.javaparser.ast.NodeTest.hasJavaDocCommentPositiveCaseWithSetComment -- Time elapsed: 0.006 s
+[INFO] com.github.javaparser.ast.NodeTest.findCompilationUnitOfCommentNode -- Time elapsed: 0.099 s
+[INFO] com.github.javaparser.ast.NodeTest.hasJavaDocCommentNegativeCaseNoComment -- Time elapsed: 0.003 s
+[INFO] com.github.javaparser.ast.NodeTest.findCompilationUnitOfOrphanCommentNode -- Time elapsed: 0.011 s
+[INFO] com.github.javaparser.ast.NodeTest.removeOrphanCommentPositiveCase -- Time elapsed: 0.020 s
+[INFO] com.github.javaparser.ast.NodeTest.hasJavaDocCommentPositiveCaseWithSetJavaDocComment -- Time elapsed: 0.004 s
+[INFO] com.github.javaparser.ast.NodeTest.removeOrphanCommentNegativeCase -- Time elapsed: 0.007 s
+[INFO] com.github.javaparser.ast.NodeTest.hasJavaDocCommentNegativeCaseLineComment -- Time elapsed: 0.003 s
+[INFO] com.github.javaparser.ast.NodeTest$PostOrderIteratorTest.astHasMultipleLeafs -- Time elapsed: 0.042 s
+[INFO] com.github.javaparser.ast.NodeTest$PostOrderIteratorTest.rootHasChild -- Time elapsed: 0.006 s
+[INFO] com.github.javaparser.ast.NodeTest$PostOrderIteratorTest.rootHasNoChild -- Time elapsed: 0.004 s
+[INFO] Running com.github.javaparser.ast.NodeTest$PreOrderIteratorTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in com.github.javaparser.ast.NodeTest$PreOrderIteratorTest
+[INFO] com.github.javaparser.ast.NodeTest$PreOrderIteratorTest.astHasMultipleLeafs -- Time elapsed: 0.013 s
+[INFO] com.github.javaparser.ast.NodeTest$PreOrderIteratorTest.rootHasChild -- Time elapsed: 0.004 s
+[INFO] com.github.javaparser.ast.NodeTest$PreOrderIteratorTest.rootHasNoChild -- Time elapsed: 0.003 s
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.593 s -- in com.github.javaparser.ast.NodeTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jacoco:0.8.12:report (jacoco-report) @ javaparser-core-testing ---
+[INFO] Loading execution data file /testbed/javaparser-core-testing/target/jacoco.exec
+[INFO] Analyzed bundle 'javaparser-core-testing' with 613 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:37 min
+[INFO] Finished at: 2026-07-22T12:21:17Z
+[INFO] ------------------------------------------------------------------------
++ ./mvnw test -B -pl javaparser-core-testing -Dtest=NodePositionTest
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------< com.github.javaparser:javaparser-core-testing >------------
+[INFO] Building javaparser-core-testing 3.26.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (jacoco-initialize) @ javaparser-core-testing ---
+[INFO] argLine set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/testbed/javaparser-core-testing/target/jacoco.exec -javaagent:'${settings.localRepository}/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar'
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ javaparser-core-testing ---
+[INFO] skip non existing resourceDirectory /testbed/javaparser-core-testing/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ javaparser-core-testing ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ javaparser-core-testing ---
+[INFO] Copying 106 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ javaparser-core-testing ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 224 source files with javac [debug target 1.8] to target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 8
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/JavaParserTest.java: Some input files use or override a deprecated API.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/JavaParserTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/LineSeparatorProcessorTest.java: Some input files use unchecked or unsafe operations.
+[INFO] /testbed/javaparser-core-testing/src/test/java/com/github/javaparser/LineSeparatorProcessorTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-javaparser-core-classes) @ javaparser-core-testing ---
+[INFO] Copying 679 resources from ../javaparser-core/target/classes to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-javaparser-core-generated-sources) @ javaparser-core-testing ---
+[INFO] Copying 13 resources from ../javaparser-core/target/generated-sources to target/generated-sources
+[INFO] 
+[INFO] --- surefire:3.4.0:test (default-test) @ javaparser-core-testing ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.github.javaparser.ast.NodePositionTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.976 s -- in com.github.javaparser.ast.NodePositionTest
+[INFO] com.github.javaparser.ast.NodePositionTest.packageProtectedMethodShouldHavePositionSet -- Time elapsed: 2.463 s
+[INFO] com.github.javaparser.ast.NodePositionTest.packageProtectedFieldShouldHavePositionSet -- Time elapsed: 0.086 s
+[INFO] com.github.javaparser.ast.NodePositionTest.packageProtectedConstructorShouldHavePositionSet -- Time elapsed: 0.032 s
+[INFO] com.github.javaparser.ast.NodePositionTest.packageProtectedEnumShouldHavePositionSet -- Time elapsed: 0.049 s
+[INFO] com.github.javaparser.ast.NodePositionTest.packageProtectedInterfaceShouldHavePositionSet -- Time elapsed: 0.020 s
+[INFO] com.github.javaparser.ast.NodePositionTest.packageProtectedClassShouldHavePositionSet -- Time elapsed: 0.012 s
+[INFO] com.github.javaparser.ast.NodePositionTest.packageProtectedAnnotationShouldHavePositionSet -- Time elapsed: 0.020 s
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jacoco:0.8.12:report (jacoco-report) @ javaparser-core-testing ---
+[INFO] Loading execution data file /testbed/javaparser-core-testing/target/jacoco.exec
+[INFO] Analyzed bundle 'javaparser-core-testing' with 613 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:33 min
+[INFO] Finished at: 2026-07-22T12:23:00Z
+[INFO] ------------------------------------------------------------------------
++ : '>>>>> End Test Output'
++ git checkout e0eb16b8870fc05c03ab794e502dd76f97422e26 javaparser-core-testing/src/test/java/com/github/javaparser/ast/NodeTest.java
+Updated 1 path from 8faacea1d

@@ -1,0 +1,12 @@
+{
+  "dataset_name": "SWE-bench/SWE-bench_Multilingual",
+  "split": "test",
+  "instance_ids": [
+    "javaparser__javaparser-4538",
+    "javaparser__javaparser-4561",
+    "reactivex__rxjava-7597"
+  ],
+  "reports_dir": "evals/reports/swebench_java",
+  "cold_predictions_path": "evals/reports/swebench_java/cold_predictions.jsonl",
+  "warm_predictions_path": "evals/reports/swebench_java/warm_predictions.jsonl"
+}

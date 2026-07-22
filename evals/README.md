@@ -69,7 +69,16 @@ Executes live AI agent trials using the local `agy` binary:
 python3 evals/runner.py --agy
 ```
 
-### 3. Exporting Evaluation Reports
+### 3. SWE-bench Multilingual Evaluation (Podman)
+
+Executes 2-pass (Cold vs. Warm) evaluations on real-world GitHub issues from **SWE-bench Lite** (Python) and **SWE-bench Multilingual** (Java) containerized via Podman:
+
+```bash
+# Run 2-pass SWE-bench evaluation under Podman
+.venv/bin/python evals/harness/swebench_orf_runner.py
+```
+
+### 4. Exporting Evaluation Reports
 
 Export comparative Markdown tables or JSON matrices:
 

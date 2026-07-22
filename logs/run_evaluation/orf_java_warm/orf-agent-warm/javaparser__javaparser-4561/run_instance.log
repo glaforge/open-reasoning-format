@@ -1,0 +1,132 @@
+2026-07-22 14:24:06,248 - INFO - Creating container for javaparser__javaparser-4561...
+2026-07-22 14:24:06,268 - INFO - Container for javaparser__javaparser-4561 created: 478162f052d06b1ab54e299c2b5c89afe1632db03856004fe561c1e34d777967
+2026-07-22 14:24:06,330 - INFO - Container for javaparser__javaparser-4561 started: 478162f052d06b1ab54e299c2b5c89afe1632db03856004fe561c1e34d777967
+2026-07-22 14:24:06,330 - INFO - Intermediate patch for javaparser__javaparser-4561 written to logs/run_evaluation/orf_java_warm/orf-agent-warm/javaparser__javaparser-4561/patch.diff, now applying to container...
+2026-07-22 14:24:06,506 - INFO - >>>>> Applied Patch:
+/tmp/patch.diff:44: space before tab in indent.
+        	ObjectCreationExpr expr = (ObjectCreationExpr) parentNode;
+Checking patch javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java...
+Applied patch javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java cleanly.
+warning: 1 line adds whitespace errors.
+
+2026-07-22 14:24:07,835 - INFO - Git diff before:
+diff --git a/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java b/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java
+index f253dec3c..3c8455523 100644
+--- a/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java
++++ b/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java
+@@ -287,6 +287,11 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+         return stringReferenceType;
+     }
+ 
++    @Override
++    public ResolvedType visit(TextBlockLiteralExpr node, Boolean solveLambdas) {
++        return stringReferenceType;
++    }
++
+     @Override
+     public ResolvedType visit(IntegerLiteralExpr node, Boolean solveLambdas) {
+         return ResolvedPrimitiveType.INT;
+@@ -514,8 +519,8 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+             }
+             return result;
+         }
+-        if (demandParentNode(node) instanceof VariableDeclarator) {
+-            VariableDeclarator decExpr = (VariableDeclarator) demandParentNode(node);
++        if (parentNode instanceof VariableDeclarator) {
++            VariableDeclarator decExpr = (VariableDeclarator) parentNode;
+             ResolvedType result = decExpr.getType().resolve();
+ 
+             if (solveLambdas) {
+@@ -523,8 +528,8 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+             }
+             return result;
+         }
+-        if (demandParentNode(node) instanceof AssignExpr) {
+-            AssignExpr assExpr = (AssignExpr) demandParentNode(node);
++        if (parentNode instanceof AssignExpr) {
++            AssignExpr assExpr = (AssignExpr) parentNode;
+             ResolvedType result = assExpr.calculateResolvedType();
+ 
+             if (solveLambdas) {
+@@ -532,6 +537,15 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+             }
+             return result;
+         }
++        if (parentNode instanceof ObjectCreationExpr) {
++        	ObjectCreationExpr expr = (ObjectCreationExpr) parentNode;
++            ResolvedType result = expr.getType().resolve();
++
++            if (solveLambdas) {
++                result = resolveLambda(node, result);
++            }
++            return result;
++        }
+         throw new UnsupportedOperationException(
+                 "The type of a lambda expr depends on the position and its return value");
+     }
+2026-07-22 14:24:07,836 - INFO - Eval script for javaparser__javaparser-4561 written to logs/run_evaluation/orf_java_warm/orf-agent-warm/javaparser__javaparser-4561/eval.sh; copying to container...
+2026-07-22 14:29:52,480 - INFO - Test runtime: 344.58 seconds
+2026-07-22 14:29:52,483 - INFO - Test output for javaparser__javaparser-4561 written to logs/run_evaluation/orf_java_warm/orf-agent-warm/javaparser__javaparser-4561/test_output.txt
+2026-07-22 14:29:52,616 - INFO - Git diff after:
+diff --git a/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java b/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java
+index f253dec3c..3c8455523 100644
+--- a/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java
++++ b/javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/TypeExtractor.java
+@@ -287,6 +287,11 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+         return stringReferenceType;
+     }
+ 
++    @Override
++    public ResolvedType visit(TextBlockLiteralExpr node, Boolean solveLambdas) {
++        return stringReferenceType;
++    }
++
+     @Override
+     public ResolvedType visit(IntegerLiteralExpr node, Boolean solveLambdas) {
+         return ResolvedPrimitiveType.INT;
+@@ -514,8 +519,8 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+             }
+             return result;
+         }
+-        if (demandParentNode(node) instanceof VariableDeclarator) {
+-            VariableDeclarator decExpr = (VariableDeclarator) demandParentNode(node);
++        if (parentNode instanceof VariableDeclarator) {
++            VariableDeclarator decExpr = (VariableDeclarator) parentNode;
+             ResolvedType result = decExpr.getType().resolve();
+ 
+             if (solveLambdas) {
+@@ -523,8 +528,8 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+             }
+             return result;
+         }
+-        if (demandParentNode(node) instanceof AssignExpr) {
+-            AssignExpr assExpr = (AssignExpr) demandParentNode(node);
++        if (parentNode instanceof AssignExpr) {
++            AssignExpr assExpr = (AssignExpr) parentNode;
+             ResolvedType result = assExpr.calculateResolvedType();
+ 
+             if (solveLambdas) {
+@@ -532,6 +537,15 @@ public class TypeExtractor extends DefaultVisitorAdapter {
+             }
+             return result;
+         }
++        if (parentNode instanceof ObjectCreationExpr) {
++        	ObjectCreationExpr expr = (ObjectCreationExpr) parentNode;
++            ResolvedType result = expr.getType().resolve();
++
++            if (solveLambdas) {
++                result = resolveLambda(node, result);
++            }
++            return result;
++        }
+         throw new UnsupportedOperationException(
+                 "The type of a lambda expr depends on the position and its return value");
+     }
+2026-07-22 14:29:52,616 - INFO - Grading answer for javaparser__javaparser-4561...
+2026-07-22 14:29:52,617 - INFO - report: {'javaparser__javaparser-4561': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'tests_status': {'FAIL_TO_PASS': {'success': ['Issue4560Test'], 'failure': []}, 'PASS_TO_PASS': {'success': ['JavaSymbolSolverTest'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for javaparser__javaparser-4561: resolved: True
+2026-07-22 14:29:52,618 - INFO - Attempting to stop container sweb.eval.javaparser__javaparser-4561.orf_java_warm...
+2026-07-22 14:30:07,776 - INFO - Attempting to remove container sweb.eval.javaparser__javaparser-4561.orf_java_warm...
+2026-07-22 14:30:07,853 - INFO - Container sweb.eval.javaparser__javaparser-4561.orf_java_warm removed.
+2026-07-22 14:30:07,853 - INFO - Attempting to remove image swebench/sweb.eval.x86_64.javaparser_1776_javaparser-4561:latest...
+2026-07-22 14:30:08,406 - INFO - Image swebench/sweb.eval.x86_64.javaparser_1776_javaparser-4561:latest removed.

@@ -1,0 +1,172 @@
++ cd /testbed
++ git config --global --add safe.directory /testbed
++ cd /testbed
++ git checkout 13a8d83656940dce0c18e8e0a2a17ac157dd1ddb src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableSwitchTest.java src/test/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchTest.java
+Updated 0 paths from 9dd4f3a47
++ git apply --verbose --reject -
+Checking patch src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableSwitchTest.java...
+Checking patch src/test/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchTest.java...
+Applied patch src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableSwitchTest.java cleanly.
+Applied patch src/test/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchTest.java cleanly.
++ : '>>>>> Start Test Output'
++ ./gradlew test --tests io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest
+Downloading https://services.gradle.org/distributions/gradle-7.6.2-bin.zip
+...........10%............20%...........30%............40%............50%...........60%............70%............80%...........90%............100%
+
+Welcome to Gradle 7.6.2!
+
+Here are the highlights of this release:
+ - Added support for Java 19.
+ - Introduced `--rerun` flag for individual task rerun.
+ - Improved dependency block for test suites to be strongly typed.
+ - Added a pluggable system for Java toolchains provisioning.
+
+For more details see https://docs.gradle.org/7.6.2/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+> Task :compileJava
+Note: /testbed/src/main/java/io/reactivex/rxjava3/plugins/RxJavaPlugins.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :processResources
+> Task :classes
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :test
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > outerInnerErrorRaceIgnoreDispose PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayError PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mapperThrows PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > scalarMap PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerErrorsReentrant PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerNoSubscriptionYet PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > cancellationShouldTriggerInnerCancellationRace PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > scalarMapDelayError PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFused PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > undeliverableUponCancel PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedCompletable PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedPollCrashDelayError PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapInnerCancelled PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteCancelRace PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleDelayErrorJustSource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > emptyInner PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithComplete PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleFunctionDoesntReturnSingle PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedSingle PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleMapperReturnsNull PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithSubsequenceError PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayErrorBufferSize PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchIssue737 PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > outerInnerErrorRace PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedPollCrash PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerCompletesReentrant PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedMaybe PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > delayErrors PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > nextSourceErrorRace PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapJustSource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > badMainSource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayErrorWithError PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWhenInnerCompleteBeforeOuter PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > doubleOnSubscribe PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > issue2654 STANDARD_OUT
+    > testIssue2654: 250
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > issue2654 PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteWhileInnerActive PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteInnerErrorRace PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWhenOuterCompleteBeforeInner PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > badInnerSource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleJustSource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > nextCancelRace PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > unsubscribe PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapDelayErrorJustSource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithError PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerIgnoresCancelAndErrors PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapFusedIterable PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerDisposedOnMainError PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerOnSubscribeOuterCancelRace PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > fusedBoundary PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithSubsequenceComplete PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapHiddenIterable PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > dispose PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapErrorEmptySource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > justInner PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchDuringOnNext PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapDelayErrorEmptySource PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedRejecting PASSED
+
+io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > announce SKIPPED
+
+-----------------------------------------------------------------
+|  Results: SUCCESS (58 tests, 57 passed, 0 failed, 1 skipped)  |
+-----------------------------------------------------------------
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 8m 12s
+4 actionable tasks: 4 executed
++ : '>>>>> End Test Output'
++ git checkout 13a8d83656940dce0c18e8e0a2a17ac157dd1ddb src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableSwitchTest.java src/test/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchTest.java
+Updated 2 paths from 9dd4f3a47

@@ -1,0 +1,183 @@
+2026-07-22 14:06:37,938 - INFO - Creating container for reactivex__rxjava-7597...
+2026-07-22 14:06:37,957 - INFO - Container for reactivex__rxjava-7597 created: 6414e0169a2ca52b4b6198f7640e630c4648a21b010ef80f296cee39174c0011
+2026-07-22 14:06:38,013 - INFO - Container for reactivex__rxjava-7597 started: 6414e0169a2ca52b4b6198f7640e630c4648a21b010ef80f296cee39174c0011
+2026-07-22 14:06:38,013 - INFO - Intermediate patch for reactivex__rxjava-7597 written to logs/run_evaluation/orf_java_cold/orf-agent-cold/reactivex__rxjava-7597/patch.diff, now applying to container...
+2026-07-22 14:06:38,157 - INFO - >>>>> Applied Patch:
+Checking patch src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java...
+Applied patch src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java cleanly.
+
+2026-07-22 14:06:39,231 - INFO - Git diff before:
+diff --git a/build.gradle b/build.gradle
+index dbc4b8905..ccbdeb2f0 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -142,19 +142,47 @@ task testNG(type: Test) {
+ check.dependsOn testNG
+ 
+ tasks.withType(Test) {
+-    testLogging {
+-        events = ["skipped", "failed"]
+-        exceptionFormat = "full"
+-
+-        debug.events = ["skipped", "failed"]
+-        debug.exceptionFormat = "full"
+-
+-        info.events = ["failed", "skipped"]
+-        info.exceptionFormat = "full"
+-
+-        warn.events = ["failed", "skipped"]
+-        warn.exceptionFormat = "full"
++testLogging {
++    outputs.upToDateWhen { false }
++    showStandardStreams = true
++    showStackTraces = true
++
++    // Show output for all logging levels
++    events = ['passed', 'skipped', 'failed', 'standardOut', 'standardError']
++
++    // set options for log level LIFECYCLE
++    events org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
++    exceptionFormat org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
++    showExceptions true
++    showCauses true
++    showStackTraces true
++
++    // set options for log level DEBUG and INFO
++    debug {
++        events org.gradle.api.tasks.testing.logging.TestLogEvent.STARTED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT
++        exceptionFormat org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+     }
++    info.events = debug.events
++    info.exceptionFormat = debug.exceptionFormat
++
++    afterSuite { desc, result ->
++        if (!desc.parent) { // will match the outermost suite
++            def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
++            def startItem = '|  ', endItem = '  |'
++            def repeatLength = startItem.length() + output.length() + endItem.length()
++            println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
++        }
++    }
++}
+ 
+     if (System.getenv("CI") == null) {
+         maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+diff --git a/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java b/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java
+index e213352a0..3e0558aac 100644
+--- a/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java
++++ b/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java
+@@ -349,9 +349,10 @@ public final class ObservableSwitchMap<T, R> extends AbstractObservableWithUpstr
+ 
+         @Override
+         public void onNext(R t) {
+-            if (index == parent.unique) {
++            SimpleQueue<R> q = queue;
++            if (index == parent.unique && q != null) {
+                 if (t != null) {
+-                    queue.offer(t);
++                    q.offer(t);
+                 }
+                 parent.drain();
+             }
+2026-07-22 14:06:39,232 - INFO - Eval script for reactivex__rxjava-7597 written to logs/run_evaluation/orf_java_cold/orf-agent-cold/reactivex__rxjava-7597/eval.sh; copying to container...
+2026-07-22 14:15:12,162 - INFO - Test runtime: 512.85 seconds
+2026-07-22 14:15:12,164 - INFO - Test output for reactivex__rxjava-7597 written to logs/run_evaluation/orf_java_cold/orf-agent-cold/reactivex__rxjava-7597/test_output.txt
+2026-07-22 14:15:12,331 - INFO - Git diff after:
+diff --git a/build.gradle b/build.gradle
+index dbc4b8905..ccbdeb2f0 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -142,19 +142,47 @@ task testNG(type: Test) {
+ check.dependsOn testNG
+ 
+ tasks.withType(Test) {
+-    testLogging {
+-        events = ["skipped", "failed"]
+-        exceptionFormat = "full"
+-
+-        debug.events = ["skipped", "failed"]
+-        debug.exceptionFormat = "full"
+-
+-        info.events = ["failed", "skipped"]
+-        info.exceptionFormat = "full"
+-
+-        warn.events = ["failed", "skipped"]
+-        warn.exceptionFormat = "full"
++testLogging {
++    outputs.upToDateWhen { false }
++    showStandardStreams = true
++    showStackTraces = true
++
++    // Show output for all logging levels
++    events = ['passed', 'skipped', 'failed', 'standardOut', 'standardError']
++
++    // set options for log level LIFECYCLE
++    events org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT,
++           org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
++    exceptionFormat org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
++    showExceptions true
++    showCauses true
++    showStackTraces true
++
++    // set options for log level DEBUG and INFO
++    debug {
++        events org.gradle.api.tasks.testing.logging.TestLogEvent.STARTED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR,
++               org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT
++        exceptionFormat org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+     }
++    info.events = debug.events
++    info.exceptionFormat = debug.exceptionFormat
++
++    afterSuite { desc, result ->
++        if (!desc.parent) { // will match the outermost suite
++            def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
++            def startItem = '|  ', endItem = '  |'
++            def repeatLength = startItem.length() + output.length() + endItem.length()
++            println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
++        }
++    }
++}
+ 
+     if (System.getenv("CI") == null) {
+         maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+diff --git a/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java b/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java
+index e213352a0..3e0558aac 100644
+--- a/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java
++++ b/src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableSwitchMap.java
+@@ -349,9 +349,10 @@ public final class ObservableSwitchMap<T, R> extends AbstractObservableWithUpstr
+ 
+         @Override
+         public void onNext(R t) {
+-            if (index == parent.unique) {
++            SimpleQueue<R> q = queue;
++            if (index == parent.unique && q != null) {
+                 if (t != null) {
+-                    queue.offer(t);
++                    q.offer(t);
+                 }
+                 parent.drain();
+             }
+2026-07-22 14:15:12,331 - INFO - Grading answer for reactivex__rxjava-7597...
+2026-07-22 14:15:12,332 - INFO - report: {'reactivex__rxjava-7597': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'tests_status': {'FAIL_TO_PASS': {'success': ['io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerOnSubscribeOuterCancelRace'], 'failure': []}, 'PASS_TO_PASS': {'success': ['io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > outerInnerErrorRaceIgnoreDispose', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayError', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mapperThrows', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > scalarMap', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerErrorsReentrant', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerNoSubscriptionYet', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > cancellationShouldTriggerInnerCancellationRace', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > scalarMapDelayError', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFused', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > undeliverableUponCancel', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedCompletable', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedPollCrashDelayError', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapInnerCancelled', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteCancelRace', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleDelayErrorJustSource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > emptyInner', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithComplete', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleFunctionDoesntReturnSingle', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedSingle', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleMapperReturnsNull', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithSubsequenceError', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayErrorBufferSize', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchIssue737', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > outerInnerErrorRace', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedPollCrash', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerCompletesReentrant', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > syncFusedMaybe', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > delayErrors', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > nextSourceErrorRace', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapJustSource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > badMainSource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchOnNextDelayErrorWithError', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWhenInnerCompleteBeforeOuter', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > doubleOnSubscribe', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > issue2654', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteWhileInnerActive', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > mainCompleteInnerErrorRace', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWhenOuterCompleteBeforeInner', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > badInnerSource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapSingleJustSource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > nextCancelRace', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > unsubscribe', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapDelayErrorJustSource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithError', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerIgnoresCancelAndErrors', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapFusedIterable', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > innerDisposedOnMainError', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > fusedBoundary', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchWithSubsequenceComplete', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapHiddenIterable', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > dispose', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapErrorEmptySource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > justInner', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchDuringOnNext', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > switchMapDelayErrorEmptySource', 'io.reactivex.rxjava3.internal.operators.observable.ObservableSwitchTest > asyncFusedRejecting'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for reactivex__rxjava-7597: resolved: True
+2026-07-22 14:15:12,333 - INFO - Attempting to stop container sweb.eval.reactivex__rxjava-7597.orf_java_cold...
+2026-07-22 14:15:27,536 - INFO - Attempting to remove container sweb.eval.reactivex__rxjava-7597.orf_java_cold...
+2026-07-22 14:15:28,133 - INFO - Container sweb.eval.reactivex__rxjava-7597.orf_java_cold removed.
+2026-07-22 14:15:28,134 - INFO - Attempting to remove image swebench/sweb.eval.x86_64.reactivex_1776_rxjava-7597:latest...
+2026-07-22 14:15:28,618 - INFO - Image swebench/sweb.eval.x86_64.reactivex_1776_rxjava-7597:latest removed.
