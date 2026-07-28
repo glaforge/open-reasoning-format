@@ -132,6 +132,30 @@ metadata:
 ---
 ```
 
+### 📦 Installing the Skill
+
+Install `manage-experience` into your AI coding agent (e.g. GitHub Copilot, Claude Code, Cursor, Antigravity) using standard Agent Skills CLI tools:
+
+#### Using Vercel `skills` CLI (`skills.sh`)
+
+```bash
+# Install into the current project
+npx skills add glaforge/open-reasoning-format --skill manage-experience
+
+# Install globally (available across all projects)
+npx skills add glaforge/open-reasoning-format --skill manage-experience -g
+```
+
+#### Using GitHub CLI (`gh skill`)
+
+```bash
+# Install into current project
+gh skill install glaforge/open-reasoning-format manage-experience
+
+# Install for a specific agent (e.g. claude-code, cursor, antigravity) at user scope
+gh skill install glaforge/open-reasoning-format manage-experience --agent claude-code --scope user
+```
+
 ### How Agents Utilize the Skill
 
 Host agent frameworks that support the Agent Skills specification automatically discover `manage-experience/SKILL.md` upon initialization. The skill provides step-by-step instructions guiding the agent through a two-phase workflow:
