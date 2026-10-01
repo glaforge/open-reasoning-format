@@ -177,7 +177,7 @@ SCENARIO_EXP_MAP = {
 
 ## 🔍 Spec Validator Rules (`harness/spec_validator.py`)
 
-The spec validator enforces compliance against **ORF Specification v0.1.0**:
+The spec validator enforces compliance against **ORF Specification v0.2.0**:
 
 1. **Required Frontmatter Keys**: `id`, `title`, `description`, `domain`, `keywords`, `complexity`, `created_at`.
 2. **Required Markdown Headers (in exact sequence)**:

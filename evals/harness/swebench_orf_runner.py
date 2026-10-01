@@ -135,7 +135,7 @@ def generate_comparative_report(cold_run_id: str, warm_run_id: str, output_path:
 ## Evaluation Details
 - **Container Engine**: Podman (v5.8.2)
 - **Dataset**: princeton-nlp/SWE-bench_Lite
-- **ORF Specification**: Version 0.1.0
+- **ORF Specification**: Version 0.2.0
 - **Cold Run ID**: `{cold_run_id}`
 - **Warm Run ID**: `{warm_run_id}`
 

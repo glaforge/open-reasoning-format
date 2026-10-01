@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-The **Open Reasoning Format (ORF)** (Version 0.1.0) is a file-based memory and experience retrieval architecture for AI agents. It enables progressive disclosure of procedural playbooks, abstracted heuristics, and execution traps without requiring vector databases or runtime server infrastructure.
+The **Open Reasoning Format (ORF)** (Version 0.2.0) is a file-based memory and experience retrieval architecture for AI agents. It enables progressive disclosure of procedural playbooks, abstracted heuristics, and execution traps without requiring vector databases or runtime server infrastructure.
 
 For detailed specification guidelines, refer to [SPECIFICATION.md](SPECIFICATION.md) and [README.md](README.md).
 
@@ -14,7 +14,7 @@ For detailed specification guidelines, refer to [SPECIFICATION.md](SPECIFICATION
 .
 ├── AGENTS.md                              # AI agent operational guidelines
 ├── README.md                              # Project overview and CLI guide
-├── SPECIFICATION.md                       # Full ORF v0.1.0 Specification
+├── SPECIFICATION.md                       # Full ORF v0.2.0 Specification
 ├── requirements.txt                        # Python dependencies (PyYAML)
 ├── experiences/
 │   ├── INDEX.md                           # Category index with YAML frontmatter
@@ -94,7 +94,7 @@ All experience files in `experiences/<domain>/` MUST:
 
 ### 2. Category Index (`experiences/INDEX.md`)
 
-- `experiences/INDEX.md` MUST maintain YAML frontmatter with `spec_version: "0.1"`, `last_updated`, and a list of `categories`.
+- `experiences/INDEX.md` MUST maintain YAML frontmatter with `spec_version: "0.2"`, `last_updated`, and a list of `categories`.
 - Frontmatter MUST be parsed using line-anchored regex delimiters (`^---\s*$`) to prevent string splitting errors on inline `---` occurrences.
 
 ### 3. Agent Skill (`manage-experience/SKILL.md`)

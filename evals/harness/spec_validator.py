@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ORF Spec Validator
-Validates whether an experience file complies strictly with Open Reasoning Format (v0.1.0).
+Validates whether an experience file complies strictly with Open Reasoning Format (v0.2.0).
 """
 
 import re
@@ -37,7 +37,7 @@ def parse_frontmatter(content: str):
 
 def validate_experience_file(filepath: Path) -> dict:
     """
-    Validates an experience markdown file against ORF v0.1 specification rules.
+    Validates an experience markdown file against ORF v0.2 specification rules.
     Returns dict: {"valid": bool, "errors": list[str], "warnings": list[str], "metadata": dict}
     """
     errors = []

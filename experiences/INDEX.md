@@ -1,6 +1,6 @@
 ---
-spec_version: "0.1"
-last_updated: "2026-07-21"
+spec_version: "0.2"
+last_updated: "2026-10-01"
 categories:
   - id: "python-scripting"
     name: "Python Scripting"

@@ -4,7 +4,7 @@
 
 # Open Reasoning Format (ORF)
 
-**Version:** 0.1.0  
+**Version:** 0.2.0  
 **Status:** Draft  
 **Specification:** [SPECIFICATION.md](SPECIFICATION.md)
 
@@ -30,7 +30,7 @@ The **Open Reasoning Format (ORF)** defines a lightweight, file-based memory arc
 .
 ├── AGENTS.md                              # AI agent operational guidelines
 ├── README.md                              # Overview and usage instructions
-├── SPECIFICATION.md                       # Full ORF v0.1.0 Specification
+├── SPECIFICATION.md                       # Full ORF v0.2.0 Specification
 ├── requirements.txt                        # Python dependencies (PyYAML)
 ├── experiences/
 │   ├── INDEX.md                           # Root category index & indirection layer
@@ -113,7 +113,7 @@ The Open Reasoning Format includes a pre-built **Agent Skill** located in [`mana
 ### Skill Overview
 
 - **Name:** `manage-experience`
-- **Specification:** `ORF-0.1`
+- **Specification:** `ORF-0.2`
 - **Location:** `manage-experience/SKILL.md`
 - **Helper Script:** `manage-experience/scripts/experiences.py`
 - **Compatibility:** Requires local filesystem read/write permissions and Python 3.10+ (with `PyYAML`).
@@ -127,8 +127,8 @@ description: Dynamically routes, retrieves, and records procedural playbooks fro
 license: Apache-2.0
 compatibility: Requires local file-system read/write permissions and Python 3.10+
 metadata:
-  version: "0.1.0"
-  spec_format: "ORF-0.1"
+  version: "0.2.0"
+  spec_format: "ORF-0.2"
 ---
 ```
 

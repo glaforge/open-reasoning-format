@@ -4,8 +4,8 @@ description: Dynamically routes, retrieves, and records procedural playbooks fro
 license: Apache-2.0
 compatibility: Requires local file-system read/write permissions and Python 3.10+
 metadata:
-  version: "0.1.0"
-  spec_format: "ORF-0.1"
+  version: "0.2.0"
+  spec_format: "ORF-0.2"
 ---
 
 # Instructions
